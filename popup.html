@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skynet Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🤖</span>
+        <span class="logo-text">SKYNET</span>
+      </div>
+      <div class="status">
+        <span id="status-dot" class="status-dot"></span>
+        <span id="status-text" class="status-text">Connecting...</span>
+      </div>
+    </header>
+    
+    <!-- Quick Actions -->
+    <section class="actions">
+      <button id="btn-investigate" class="action-btn primary">
+        <span class="btn-icon">🔍</span>
+        <span class="btn-label">Investigate Page</span>
+      </button>
+      
+      <div class="action-row">
+        <button id="btn-visor" class="action-btn secondary">
+          <span class="btn-icon">👁️</span>
+          <span class="btn-label">Toggle Visor</span>
+        </button>
+        <button id="btn-archive" class="action-btn secondary">
+          <span class="btn-icon">📦</span>
+          <span class="btn-label">Archive</span>
+        </button>
+      </div>
+      
+      <div class="action-row">
+        <button id="btn-reconnect" class="action-btn secondary small">
+          <span class="btn-icon">🔄</span>
+          <span class="btn-label">Reconnect</span>
+        </button>
+        <button id="btn-disconnect" class="action-btn secondary small">
+          <span class="btn-icon">⏹️</span>
+          <span class="btn-label">Disconnect</span>
+        </button>
+      </div>
+    </section>
+    
+    <!-- Services Grid -->
+    <section class="services">
+      <h3>Core</h3>
+      <div class="services-grid">
+        <a href="http://10.10.10.123:3210/skynet" target="_blank" class="service-link">
+          <span class="service-icon">🤖</span>
+          <span class="service-name">Dashboard</span>
+        </a>
+        <a href="http://10.10.10.123:3800" target="_blank" class="service-link">
+          <span class="service-icon">🎯</span>
+          <span class="service-name">Mission Ctrl</span>
+        </a>
+        <a href="http://10.10.10.123:5180" target="_blank" class="service-link">
+          <span class="service-icon">🖖</span>
+          <span class="service-name">LCARS</span>
+        </a>
+        <a href="http://10.10.10.123:3280" target="_blank" class="service-link">
+          <span class="service-icon">🎙️</span>
+          <span class="service-name">Voice</span>
+        </a>
+        <a href="http://10.10.10.123:3700" target="_blank" class="service-link">
+          <span class="service-icon">📚</span>
+          <span class="service-name">Docs</span>
+        </a>
+        <a href="http://10.10.10.123:3210/files" target="_blank" class="service-link">
+          <span class="service-icon">📁</span>
+          <span class="service-name">Files</span>
+        </a>
+      </div>
+      
+      <h3>Operations</h3>
+      <div class="services-grid">
+        <a href="http://10.10.10.123:3000" target="_blank" class="service-link">
+          <span class="service-icon">💳</span>
+          <span class="service-name">POS</span>
+        </a>
+        <a href="http://10.10.10.123:5173" target="_blank" class="service-link">
+          <span class="service-icon">🖥️</span>
+          <span class="service-name">POS UI</span>
+        </a>
+        <a href="http://10.10.10.123:3400" target="_blank" class="service-link">
+          <span class="service-icon">📺</span>
+          <span class="service-name">Signage</span>
+        </a>
+        <a href="http://10.10.10.123:5185" target="_blank" class="service-link">
+          <span class="service-icon">📋</span>
+          <span class="service-name">ControlLog</span>
+        </a>
+        <a href="http://10.10.10.123:3055" target="_blank" class="service-link">
+          <span class="service-icon">🚗</span>
+          <span class="service-name">Baywatch</span>
+        </a>
+        <a href="http://10.10.10.123:3853" target="_blank" class="service-link">
+          <span class="service-icon">🌐</span>
+          <span class="service-name">NetOps</span>
+        </a>
+      </div>
+      
+      <h3>Media & Cameras</h3>
+      <div class="services-grid">
+        <a href="http://10.10.10.123:1984" target="_blank" class="service-link">
+          <span class="service-icon">📹</span>
+          <span class="service-name">Cameras</span>
+        </a>
+        <a href="http://10.10.10.123:3860" target="_blank" class="service-link">
+          <span class="service-icon">🧠</span>
+          <span class="service-name">Hailo</span>
+        </a>
+        <a href="http://10.10.10.123:3500" target="_blank" class="service-link">
+          <span class="service-icon">🎬</span>
+          <span class="service-name">Remotion</span>
+        </a>
+        <a href="http://10.10.10.123:3650" target="_blank" class="service-link">
+          <span class="service-icon">🎥</span>
+          <span class="service-name">Renderflow</span>
+        </a>
+        <a href="http://10.10.10.123:3510" target="_blank" class="service-link">
+          <span class="service-icon">🖼️</span>
+          <span class="service-name">Grok Gen</span>
+        </a>
+        <a href="http://10.10.10.123:3460" target="_blank" class="service-link">
+          <span class="service-icon">📄</span>
+          <span class="service-name">PDF</span>
+        </a>
+      </div>
+      
+      <h3>Tools & Projects</h3>
+      <div class="services-grid">
+        <a href="http://10.10.10.123:3848" target="_blank" class="service-link">
+          <span class="service-icon">💡</span>
+          <span class="service-name">Ideate</span>
+        </a>
+        <a href="http://10.10.10.123:8501" target="_blank" class="service-link">
+          <span class="service-icon">🛫</span>
+          <span class="service-name">AirWave</span>
+        </a>
+        <a href="http://10.10.10.123:3106" target="_blank" class="service-link">
+          <span class="service-icon">🔐</span>
+          <span class="service-name">ProofMark</span>
+        </a>
+        <a href="http://10.10.10.123:3100" target="_blank" class="service-link">
+          <span class="service-icon">🖥️</span>
+          <span class="service-name">OpenPlatform</span>
+        </a>
+        <a href="http://10.10.10.123:3870" target="_blank" class="service-link">
+          <span class="service-icon">📤</span>
+          <span class="service-name">SkyDrop</span>
+        </a>
+        <a href="http://10.10.10.123:3710" target="_blank" class="service-link">
+          <span class="service-icon">👷</span>
+          <span class="service-name">Workers</span>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Settings Summary -->
+    <section class="settings-summary">
+      <div class="settings-row">
+        <span id="setting-remote" class="setting-badge on" title="Remote Commands">🎮 Remote</span>
+        <span id="setting-extract" class="setting-badge on" title="Content Extraction">📄 Extract</span>
+        <span id="setting-confirm" class="setting-badge off" title="Require Confirmation">✋ Confirm</span>
+        <span id="setting-audit" class="setting-badge on" title="Audit Log">📝 Log</span>
+      </div>
+      <a href="#" id="open-settings" class="settings-link">⚙️ Settings</a>
+    </section>
+    
+    <!-- Footer -->
+    <div id="update-banner" class="update-banner" style="display: none;">
+      <span>🆕 Update available: <strong id="update-version"></strong></span>
+      <a id="update-link" href="#" target="_blank" class="update-btn">Download</a>
+    </div>
+    <footer class="footer">
+      <span class="version">v2.2.2</span>
+      <span class="divider">•</span>
+      <span class="brand">Skynet Extension</span>
+    </footer>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

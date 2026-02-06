@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../lcars/lcars.css">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="lcars-frame sidepanel-root">
+    <!-- LCARS Header with Elbow -->
+    <div class="lcars-header">
+      <div class="lcars-elbow-left"></div>
+      <div class="lcars-title">SKYNET COMMAND</div>
+      <div class="header-status" id="header-status">
+        <span class="ws-dot" id="ws-dot"></span>
+        <span class="ws-label" id="ws-label">CONNECTING</span>
+      </div>
+      <div class="lcars-cap-right"></div>
+    </div>
+
+    <!-- Split view: Nav + Content -->
+    <div class="sidepanel-layout">
+      <div class="sidepanel-nav" id="nav">
+        <div class="nav-header">
+          <span class="nav-header-label">SYSTEMS</span>
+        </div>
+        <div id="nav-list">
+          <!-- App nav items rendered here -->
+        </div>
+        <div class="nav-fill"></div>
+        <div class="nav-footer">
+          <span id="nav-status">0 APPS</span>
+        </div>
+      </div>
+
+      <div class="sidepanel-main" id="main-content">
+        <!-- Loading state -->
+        <div class="lcars-loading" id="loading">
+          <div class="lcars-spinner"></div>
+          <div class="lcars-loading-text">SCANNING NETWORK</div>
+        </div>
+
+        <!-- Selected app panels rendered here -->
+        <div id="panel-content" style="display:none"></div>
+
+        <!-- Welcome state -->
+        <div id="welcome-state" class="welcome-state" style="display:none">
+          <div class="welcome-icon">⬡</div>
+          <div class="welcome-title">SKYNET COMMAND</div>
+          <div class="welcome-sub">SELECT A SYSTEM FROM THE NAV</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="lcars-footer">
+      <div class="lcars-footer-cap-left"></div>
+      <div class="lcars-footer-fill">
+        <span id="status-text">INITIALIZING</span>
+        <span id="time-display"></span>
+      </div>
+      <div class="lcars-footer-cap-right"></div>
+    </div>
+  </div>
+
+  <script src="../lib/registry.js"></script>
+  <script src="../lib/renderer.js"></script>
+  <script src="../lib/websocket.js"></script>
+  <script src="panel.js"></script>
+</body>
+</html>

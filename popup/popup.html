@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../lcars/lcars.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="lcars-frame">
+    <!-- LCARS Header with Elbow -->
+    <div class="lcars-header">
+      <div class="lcars-elbow-left"></div>
+      <div class="lcars-title">SKYNET COMMAND</div>
+      <div class="lcars-cap-right"></div>
+    </div>
+
+    <!-- Body: Sidebar + Content -->
+    <div class="lcars-body">
+      <div class="lcars-sidebar">
+        <div class="lcars-sidebar-elbow-top"></div>
+        <div class="lcars-sidebar-fill"></div>
+        <div class="lcars-sidebar-elbow-bottom"></div>
+      </div>
+
+      <div class="lcars-content" id="content">
+        <!-- Loading state -->
+        <div class="lcars-loading" id="loading">
+          <div class="lcars-spinner"></div>
+          <div class="lcars-loading-text">SCANNING NETWORK</div>
+        </div>
+
+        <!-- Apps rendered here -->
+        <div id="apps-container" style="display:none"></div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="lcars-empty" style="display:none">
+          NO APPS REGISTERED<br>
+          <span style="font-size:10px;color:var(--lcars-text-muted)">Apps register via POST /api/panels/register</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="lcars-footer">
+      <div class="lcars-footer-cap-left"></div>
+      <div class="lcars-footer-fill">
+        <span id="status-text">INITIALIZING</span>
+        <span id="app-count">0 APPS</span>
+      </div>
+      <div class="lcars-footer-cap-right"></div>
+    </div>
+  </div>
+
+  <script src="../lib/registry.js"></script>
+  <script src="../lib/renderer.js"></script>
+  <script src="../lib/websocket.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+/**
+ * Popup-specific styles — 400×600 popup view
+ */
+
+html, body {
+  width: 400px;
+  height: 600px;
+  overflow: hidden;
+}
+
+.lcars-frame {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  gap: 4px;
+}
+
+.lcars-header {
+  height: 42px;
+}
+
+.lcars-title {
+  font-size: 1.2rem;
+}
+
+.lcars-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Compact panel styling for popup */
+.stats-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.stat-value {
+  font-size: 22px;
+}
+
+.iframe-container.size-full iframe {
+  height: 300px;
+}

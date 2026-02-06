@@ -1,0 +1,230 @@
+/* Skynet Visor - LCARS-style overlay */
+
+#skynet-visor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+/* LCARS-style end caps */
+.visor-left-cap {
+  width: 80px;
+  height: 100%;
+  background: #ff9500;
+  border-radius: 0 0 30px 0;
+  flex-shrink: 0;
+}
+
+.visor-right-cap {
+  width: 80px;
+  height: 100%;
+  background: #cc6699;
+  border-radius: 0 0 0 30px;
+  flex-shrink: 0;
+}
+
+/* Main content area */
+.visor-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  overflow: hidden;
+}
+
+/* Service links */
+.visor-service {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.visor-service:hover {
+  background: rgba(255, 149, 0, 0.2);
+  border-color: #ff9500;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+.visor-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(180deg, #ff9500 0%, #e68a00 100%);
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.visor-btn:hover {
+  background: linear-gradient(180deg, #ffaa33 0%, #ff9500 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 149, 0, 0.4);
+}
+
+.visor-btn:active {
+  transform: translateY(0);
+}
+
+/* Screenshot button special styling */
+#visor-screenshot {
+  background: linear-gradient(180deg, #cc6699 0%, #b35c87 100%);
+}
+
+#visor-screenshot:hover {
+  background: linear-gradient(180deg, #dd77aa 0%, #cc6699 100%);
+  box-shadow: 0 2px 8px rgba(204, 102, 153, 0.4);
+}
+
+/* Icons and labels */
+.visor-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.visor-label {
+  font-size: 12px;
+}
+
+/* Divider */
+.visor-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 8px;
+}
+
+/* Status indicator */
+.visor-status {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #888;
+  box-shadow: 0 0 6px currentColor;
+  transition: background-color 0.3s ease;
+}
+
+/* Notification toast */
+.visor-notification {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #ff9500;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.visor-notification.show {
+  bottom: -45px;
+  opacity: 1;
+}
+
+/* Screenshot flash effect */
+.screenshot-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2147483646;
+  transition: opacity 0.1s ease;
+}
+
+.screenshot-flash.active {
+  opacity: 0.5;
+}
+
+/* Responsive: hide labels on narrow screens */
+@media (max-width: 1200px) {
+  .visor-label {
+    display: none;
+  }
+  
+  .visor-service,
+  .visor-btn {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .visor-left-cap,
+  .visor-right-cap {
+    width: 40px;
+  }
+  
+  .visor-divider {
+    display: none;
+  }
+  
+  .visor-content {
+    gap: 4px;
+  }
+}
+
+/* Ensure visor doesn't mess with page layout */
+#skynet-visor * {
+  box-sizing: border-box;
+}
+
+/* CyberEther Metrics */
+.visor-metrics {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.ce-metric {
+  font-size: 11px;
+  color: #00d4ff;
+  white-space: nowrap;
+  cursor: default;
+  transition: color 0.3s;
+}
+
+.ce-metric:hover {
+  color: #ffffff;
+}

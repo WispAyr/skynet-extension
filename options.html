@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skynet Extension Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="lcars-container">
+    <header class="lcars-header">
+      <div class="lcars-bracket left"></div>
+      <h1>SKYNET CONFIGURATION</h1>
+      <div class="lcars-bracket right"></div>
+    </header>
+
+    <main class="settings-grid">
+      <!-- Remote Commands Section -->
+      <section class="settings-section">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <span class="section-title">REMOTE COMMANDS</span>
+        </div>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="enableRemoteCommands">Enable Remote Commands</label>
+            <p class="setting-desc">Allow Skynet Dashboard to send commands to this browser</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="enableRemoteCommands">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="requireConfirmation">Require Confirmation</label>
+            <p class="setting-desc">Prompt before executing remote commands (higher security)</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="requireConfirmation">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Content Extraction Section -->
+      <section class="settings-section">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <span class="section-title">CONTENT EXTRACTION</span>
+        </div>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="enableContentExtraction">Enable Content Extraction</label>
+            <p class="setting-desc">Allow Investigate feature to send page content to agents</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="enableContentExtraction">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="contentExtractionLimit">Extraction Limit (chars)</label>
+            <p class="setting-desc">Maximum characters to extract from page content</p>
+          </div>
+          <input type="number" id="contentExtractionLimit" min="100" max="50000" step="100" class="number-input">
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="allowedDomains">Allowed Domains</label>
+            <p class="setting-desc">Whitelist domains for extraction (* = all, comma-separated)</p>
+          </div>
+          <input type="text" id="allowedDomains" placeholder="* or github.com, stackoverflow.com" class="text-input">
+        </div>
+      </section>
+
+      <!-- Connection Section -->
+      <section class="settings-section">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <span class="section-title">CONNECTION</span>
+        </div>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="autoConnect">Auto-Connect</label>
+            <p class="setting-desc">Automatically connect to Skynet Dashboard on browser start</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="autoConnect">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="enableAuditLog">Enable Local Audit Log</label>
+            <p class="setting-desc">Log all actions locally for review (stored in extension)</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="enableAuditLog">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Token Section -->
+      <section class="settings-section">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <span class="section-title">SECURITY TOKEN</span>
+        </div>
+        
+        <div class="setting-row token-row">
+          <div class="setting-info">
+            <label>Authentication Token</label>
+            <p class="setting-desc">Unique token for authenticating with Skynet Dashboard</p>
+          </div>
+          <div class="token-display">
+            <code id="tokenPreview">Loading...</code>
+            <button id="showFullToken" class="btn-secondary">Show</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label>Regenerate Token</label>
+            <p class="setting-desc warning">⚠️ This will disconnect and require re-authentication</p>
+          </div>
+          <button id="regenerateToken" class="btn-danger">Regenerate</button>
+        </div>
+      </section>
+
+      <!-- Audit Log Viewer -->
+      <section class="settings-section">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <span class="section-title">LOCAL AUDIT LOG</span>
+        </div>
+        
+        <div class="audit-controls">
+          <button id="refreshLog" class="btn-secondary">Refresh</button>
+          <button id="clearLog" class="btn-danger">Clear Log</button>
+          <span id="logCount" class="log-count">0 entries</span>
+        </div>
+        
+        <div class="audit-log" id="auditLog">
+          <div class="log-entry placeholder">No log entries yet</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="lcars-footer">
+      <div class="status-bar">
+        <span id="saveStatus" class="save-status">Settings auto-saved</span>
+        <span class="version">v2.2.1</span>
+      </div>
+      <button id="resetDefaults" class="btn-secondary">Reset to Defaults</button>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
