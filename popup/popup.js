@@ -4,7 +4,18 @@
  */
 
 (async function () {
-  const REGISTRY_URL = 'http://localhost:3210';
+  // Auto-detect registry: try localhost first, fall back to PU2 IPs
+  let REGISTRY_URL = 'http://localhost:3210';
+  
+  // If not on PU2 itself, use its network IP
+  const hostname = window.location.hostname;
+  if (hostname !== 'localhost' && hostname !== '127.0.0.1' && hostname !== '10.10.10.123') {
+    REGISTRY_URL = 'http://192.168.195.33:3210';
+  }
+  
+  // Allow override from storage
+  const stored = await new Promise(r => chrome.storage?.local?.get(['registryUrl'], d => r(d?.registryUrl)));
+  if (stored) REGISTRY_URL = stored;
 
   const registry = new SkynetRegistry(REGISTRY_URL);
   const renderer = new PanelRenderer(registry);
@@ -111,6 +122,54 @@
     }
   });
   ws.connect();
+
+  // ============================================
+  // SentryFlow Alerts in Popup
+  // ============================================
+  const alertsBanner = document.getElementById('alerts-banner');
+  const alertsList = document.getElementById('alerts-list');
+  const alertBadge = document.getElementById('alert-badge');
+  const clearBtn = document.getElementById('clear-alerts');
+
+  function renderAlerts(alerts, count) {
+    if (!alerts || alerts.length === 0) {
+      alertsBanner.style.display = 'none';
+      return;
+    }
+    alertsBanner.style.display = 'block';
+    alertBadge.textContent = count || alerts.length;
+    
+    alertsList.innerHTML = alerts.slice(0, 10).map(a => {
+      const time = new Date(a.timestamp).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      const levelClass = a.level >= 2 ? 'alert-critical' : a.level >= 1 ? 'alert-warning' : 'alert-info';
+      return `<div class="alert-item ${levelClass}">
+        <span class="alert-time">${time}</span>
+        <span class="alert-camera">${a.camera}</span>
+        <span class="alert-msg">${a.type}</span>
+      </div>`;
+    }).join('');
+  }
+
+  // Load existing alerts
+  chrome.runtime.sendMessage({ type: 'getAlerts' }, (resp) => {
+    if (resp) renderAlerts(resp.alerts, resp.count);
+  });
+
+  // Listen for new alerts
+  chrome.runtime.onMessage.addListener((msg) => {
+    if (msg.type === 'sentryflow_event') {
+      chrome.runtime.sendMessage({ type: 'getAlerts' }, (resp) => {
+        if (resp) renderAlerts(resp.alerts, resp.count);
+      });
+    }
+  });
+
+  // Clear button
+  clearBtn?.addEventListener('click', () => {
+    chrome.runtime.sendMessage({ type: 'clearAlerts' }, () => {
+      alertsBanner.style.display = 'none';
+    });
+  });
 
   // Cleanup on popup close
   window.addEventListener('unload', () => {

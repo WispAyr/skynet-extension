@@ -4,7 +4,13 @@
  */
 
 (async function () {
-  const REGISTRY_URL = 'http://localhost:3210';
+  let REGISTRY_URL = 'http://localhost:3210';
+  const hostname = window.location.hostname;
+  if (hostname !== 'localhost' && hostname !== '127.0.0.1' && hostname !== '10.10.10.123') {
+    REGISTRY_URL = 'http://192.168.195.33:3210';
+  }
+  const stored = await new Promise(r => chrome.storage?.local?.get(['registryUrl'], d => r(d?.registryUrl)));
+  if (stored) REGISTRY_URL = stored;
 
   const registry = new SkynetRegistry(REGISTRY_URL);
   const renderer = new PanelRenderer(registry);
@@ -166,7 +172,8 @@
 
   // ─── WebSocket ────────────────────────────────────────────────────
 
-  const ws = new SkynetWebSocket('ws://localhost:3210/ws/panels');
+  const wsHost = REGISTRY_URL.replace('http://', 'ws://').replace('https://', 'wss://');
+  const ws = new SkynetWebSocket(`${wsHost}/ws/panels`);
 
   ws.onMessage((msg) => {
     if (msg.type === 'panel.update' || msg.type === 'panel.register') {

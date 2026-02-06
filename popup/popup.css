@@ -41,3 +41,60 @@ html, body {
 .iframe-container.size-full iframe {
   height: 300px;
 }
+
+/* SentryFlow Alerts */
+#alerts-banner {
+  background: #1a1a2e;
+  border: 1px solid #FF9900;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.alerts-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #FF9900;
+  color: #000;
+  font-family: 'Antonio', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+.alerts-count {
+  background: #CC4444;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 11px;
+  margin-left: auto;
+}
+.alerts-clear {
+  background: none;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 10px;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: inherit;
+}
+.alerts-clear:hover { background: rgba(0,0,0,0.2); }
+.alerts-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.alert-item {
+  display: flex;
+  gap: 8px;
+  padding: 4px 10px;
+  font-size: 11px;
+  border-bottom: 1px solid #222;
+  color: #ccc;
+}
+.alert-item.alert-critical { border-left: 3px solid #CC4444; }
+.alert-item.alert-warning { border-left: 3px solid #FFCC00; }
+.alert-item.alert-info { border-left: 3px solid #9999FF; }
+.alert-time { color: #666; min-width: 40px; }
+.alert-camera { color: #9999FF; min-width: 100px; }
+.alert-msg { color: #FFCC66; }

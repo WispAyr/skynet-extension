@@ -6,11 +6,15 @@
   "permissions": [
     "sidePanel",
     "activeTab",
-    "storage"
+    "storage",
+    "notifications",
+    "alarms"
   ],
   "host_permissions": [
     "http://localhost:*/*",
     "http://10.10.10.123:*/*",
+    "http://192.168.195.33:*/*",
+    "http://10.10.10.198:*/*",
     "http://127.0.0.1:*/*"
   ],
   "action": {
@@ -33,6 +37,6 @@
     "128": "icons/icon128.png"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; frame-src http://localhost:* http://10.10.10.123:* http://127.0.0.1:*"
+    "extension_pages": "script-src 'self'; object-src 'self'; frame-src http://localhost:* http://10.10.10.123:* http://10.10.10.198:* http://192.168.195.33:* http://127.0.0.1:*"
   }
 }
