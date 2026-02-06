@@ -8,14 +8,13 @@
 </head>
 <body>
   <div class="lcars-frame">
-    <!-- LCARS Header with Elbow -->
+    <!-- LCARS Header -->
     <div class="lcars-header">
       <div class="lcars-elbow-left"></div>
       <div class="lcars-title">SKYNET COMMAND</div>
       <div class="lcars-cap-right"></div>
     </div>
 
-    <!-- Body: Sidebar + Content -->
     <div class="lcars-body">
       <div class="lcars-sidebar">
         <div class="lcars-sidebar-elbow-top"></div>
@@ -24,30 +23,35 @@
       </div>
 
       <div class="lcars-content" id="content">
-        <!-- Loading state -->
+        <!-- Alerts Banner (compact) -->
+        <div id="alerts-banner" style="display:none">
+          <div class="alerts-header" id="alerts-toggle">
+            <span>🛡️</span>
+            <span class="alerts-title">ALERTS</span>
+            <span class="alerts-count" id="alert-badge">0</span>
+            <button class="alerts-clear" id="clear-alerts">✕</button>
+          </div>
+          <div id="alerts-list" class="alerts-list"></div>
+        </div>
+
+        <!-- Loading -->
         <div class="lcars-loading" id="loading">
           <div class="lcars-spinner"></div>
           <div class="lcars-loading-text">SCANNING NETWORK</div>
         </div>
 
-        <!-- Alerts banner -->
-        <div id="alerts-banner" style="display:none">
-          <div class="alerts-header">
-            <span class="alerts-icon">🛡️</span>
-            <span class="alerts-title">SENTRYFLOW ALERTS</span>
-            <span class="alerts-count" id="alert-badge">0</span>
-            <button class="alerts-clear" id="clear-alerts">CLEAR</button>
-          </div>
-          <div id="alerts-list" class="alerts-list"></div>
-        </div>
+        <!-- App Grid -->
+        <div id="apps-grid" style="display:none"></div>
 
-        <!-- Apps rendered here -->
-        <div id="apps-container" style="display:none"></div>
+        <!-- Quick Actions -->
+        <div id="quick-actions" style="display:none">
+          <div class="section-label">QUICK ACTIONS</div>
+          <div class="quick-actions-grid" id="quick-actions-grid"></div>
+        </div>
 
         <!-- Empty state -->
         <div id="empty-state" class="lcars-empty" style="display:none">
-          NO APPS REGISTERED<br>
-          <span style="font-size:10px;color:var(--lcars-text-muted)">Apps register via POST /api/panels/register</span>
+          NO APPS REGISTERED
         </div>
       </div>
     </div>
@@ -57,14 +61,14 @@
       <div class="lcars-footer-cap-left"></div>
       <div class="lcars-footer-fill">
         <span id="status-text">INITIALIZING</span>
-        <span id="app-count">0 APPS</span>
+        <button id="open-sidepanel" class="footer-btn" title="Open Side Panel">◧ PANEL</button>
+        <span id="app-count">0</span>
       </div>
       <div class="lcars-footer-cap-right"></div>
     </div>
   </div>
 
   <script src="../lib/registry.js"></script>
-  <script src="../lib/renderer.js"></script>
   <script src="../lib/websocket.js"></script>
   <script src="popup.js"></script>
 </body>
